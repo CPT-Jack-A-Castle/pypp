@@ -15,6 +15,9 @@ class Python : public Singleton<Python> {
     friend class Singleton<Python>;
 private:
     wchar_t* program;
+    void InitModule() {
+
+    }
 public:
     //main functions
     bool Initialize(string name) {
@@ -33,9 +36,16 @@ public:
         PyMem_RawFree(program);
     }
     //custom functions
+    void SimpleString(string filename) {
+        PyRun_SimpleString(filename.c_str());
+    }
     void File(string filename) {
         FILE* file = _Py_fopen_obj(Py_BuildValue("s", filename), "r+");
         if (file != NULL)
             PyRun_SimpleFile(file, filename.c_str());
     }
+    /*void CreateModule(string modulename, static PyMethodDef methods[]) {
+        PyModuleDef Module = { PyModuleDef_HEAD_INIT, modulename.c_str(), NULL, -1, methods, NULL, NULL, NULL, NULL };
+        PyModule_Create(&Module);
+    }*/
 };
