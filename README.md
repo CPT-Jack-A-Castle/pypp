@@ -1,7 +1,8 @@
-# pypp (x64)
+# pypp (x32)
 Python code emulator on C++
 
-> The 64-bit version for [Python](https://www.python.org/) was used here
+> The 32-bit version for [Python](https://www.python.org/) was used here
+> You must copy python dll files from "dlls" folder to your release folder
 
 ## Syntax:
 ```
@@ -9,9 +10,38 @@ Python code emulator on C++
   Python::Get().SimpleString("print('Hello World!')") - Code from string
   Python::Get().End() - End python script
   Python::Get().File("test.py") - Open python file
+  Python::Get().AddFunction("FunctionName", Function); - Add function to module
+  Python::Get().CreateModule("ExampleModule"); - Create module
 ```
 
-## Example:
+## Module example:
+example.cpp:
+```cpp
+  #include "helper.hpp"
+  
+  static PyObject* GetBool(PyObject* self, PyObject* args)
+  {
+    const char* command;
+
+    if (!PyArg_ParseTuple(args, "s", &command))
+      return NULL;
+
+    return PyBool_FromLong(atol(command));
+  }
+  
+  int main() {
+    Python::Get().AddFunction("GetBool", GetBool);
+    Python::Get().CreateModule("ExampleModule");
+	
+    if (Python::Get().Initialize("Test")) {
+      Python::Get().SimpleString("import ExampleModule\nprint(ExampleModule.GetBool('0'))");
+      Python::Get().End();
+    }
+    return 0;
+  }
+```
+
+## File example:
 example.cpp:
 ```cpp
   #include "helper.hpp"
