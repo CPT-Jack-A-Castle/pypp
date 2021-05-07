@@ -7,7 +7,7 @@ Python code emulator on C++
 
 ## Syntax:
 ```
-  Python::Get().Initialize("Test") - Init python script (return boolean)
+  Python::Get().Initialize("Test", false) - Init python script (return boolean)
   Python::Get().SimpleString("print('Hello World!')") - Code from string
   Python::Get().End() - End python script
   Python::Get().File("test.py") - Open python file
