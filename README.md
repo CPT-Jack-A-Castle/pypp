@@ -34,7 +34,7 @@ example.cpp:
     Python::Get().AddFunction("GetBool", GetBool);
     Python::Get().CreateModule("ExampleModule");
 	
-    if (Python::Get().Initialize("Test")) {
+    if (Python::Get().Initialize("Test", true)) {
       Python::Get().SimpleString("import ExampleModule\nprint(ExampleModule.GetBool('0'))");
       Python::Get().End();
     }
@@ -48,7 +48,7 @@ example.cpp:
   #include "helper.hpp"
 
   int main() {
-    if (Python::Get().Initialize("Test")) {
+    if (Python::Get().Initialize("Test", false)) {
       Python::Get().File("test.py");
       Python::Get().End();
     }
