@@ -2,6 +2,7 @@
 Python code emulator on C++
 
 > The 32-bit version for [Python](https://www.python.org/) was used here
+> 
 > You must copy python dll files from "dlls" folder to your release folder
 
 ## Syntax:
