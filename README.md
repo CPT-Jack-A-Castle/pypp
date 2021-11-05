@@ -1,5 +1,5 @@
 # pypp (x32)
-Python code emulator on C++
+Python code player on C++
 
 > The 32-bit version for [Python](https://www.python.org/) was used here
 > 
